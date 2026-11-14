@@ -8,6 +8,9 @@ class TaskSeeder extends Seeder
 {
     public function run(): void
     {
+        if ($this->db->table('tasks')->countAllResults() > 0) {
+            return;
+        }
         $day = static fn (int $offset): string => date('Y-m-d', strtotime("{$offset} days"));
         $now = date('Y-m-d H:i:s');
 
